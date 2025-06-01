@@ -28,15 +28,7 @@
         "tsConfigPath": "apps/notification-service/tsconfig.app.json"
       }
     },
-    "project-manager-app": {
-      "type": "application",
-      "root": "apps/project-manager-app",
-      "entryFile": "main",
-      "sourceRoot": "apps/project-manager-app/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/project-manager-app/tsconfig.app.json"
-      }
-    },
+  
     "project-service": {
       "type": "application",
       "root": "apps/project-service",

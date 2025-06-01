@@ -1,8 +1,8 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { UsersService } from './user-service.service';
+import { CreateUserDto } from './dtos/create-user.dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
 
 @Controller()
 export class UsersController {
@@ -41,5 +41,9 @@ export class UsersController {
   @MessagePattern({ cmd: 'validate_user' })
   validateUser(@Payload() data: { email: string; password: string }) {
     return this.usersService.validateUser(data.email, data.password);
+  }
+
+  getHello() {
+    return 'Hello from User Service!';
   }
 }

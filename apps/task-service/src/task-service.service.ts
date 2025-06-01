@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { CreateTaskDto } from './dto/create-task.dto';
-import { UpdateTaskDto } from './dto/update-task.dto';
-import { TasksRepository } from './tasks.repository';
-import { TaskStatus } from './schemas/task.schema';
+import { CreateTaskDto } from './dtos/create-task.dto';
+import { UpdateTaskDto } from './dtos/update-task.dto';
+import { TasksRepository } from './repositories/task.repository';
+import { TaskStatus } from './schema/task.schema';
 
 @Injectable()
 export class TasksService {
@@ -16,7 +16,7 @@ export class TasksService {
     // Check for circular dependencies if dependsOn is provided
     if (createTaskDto.dependsOn && createTaskDto.dependsOn.length > 0) {
       const hasCircular = await this.tasksRepository.checkCircularDependency(
-        null, // New task doesn't have an ID yet
+        '', // New task doesn't have an ID yet
         createTaskDto.dependsOn,
       );
       
@@ -61,7 +61,7 @@ export class TasksService {
 
   async update(id: string, updateTaskDto: UpdateTaskDto) {
     // Check for circular dependencies if dependsOn is updated
-    if (updateTaskDto.dependsOn && updateTaskDto.dependsOn.length > 0) {
+    if (Array.isArray(updateTaskDto.dependsOn) && updateTaskDto.dependsOn.length > 0) {
       const hasCircular = await this.tasksRepository.checkCircularDependency(
         id,
         updateTaskDto.dependsOn,

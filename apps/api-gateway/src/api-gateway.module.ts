@@ -13,6 +13,7 @@ import { TasksModule } from './task/task.module';
 import { ProjectsModule } from './project/project.module';
 import { SearchModule } from './search/search.module';
 import { NotificationsModule } from './notification/notification.module';
+import { ApiGatewayService } from './api-gateway.service';
 
 @Module({
   imports: [
@@ -100,13 +101,9 @@ import { NotificationsModule } from './notification/notification.module';
     UsersModule,
     TasksModule,
     ProjectsModule,
-    UserModule,
-    TaskModule,
-    ProjectModule,
     SearchModule,
-    NotificationModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [ApiGatewayController],
+  providers: [ApiGatewayService],
 })
 export class AppModule {}
